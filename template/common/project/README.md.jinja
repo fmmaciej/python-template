@@ -23,16 +23,24 @@
 
 ## Development
 
+### Requirements:
+
+- ruff
+- mypy
+- pre-commit
+
+### Commands:
+
 - format: `just format`
-- lint: `just lint`
-- type-check: `just typecheck`
+- lint: `just ruff`
+- type-check: `just mypy`
 - test: `just test`
 - check all: `just check`
 
-## Pre-commit
+### Pre-commit
 
 Install hooks: `uv run pre-commit install`
 
-## Configuration
+### Configuration
 
 Copy example env if needed: `cp .env.example .env`

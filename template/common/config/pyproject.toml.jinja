@@ -38,14 +38,7 @@ target-version = "py{{ python_version | replace('.', '') }}"
 src = ["src", "."]
 
 [tool.ruff.lint]
-select = [
-  "E",
-  "F",
-  "I",
-  "B",
-  "UP",
-  "SIM",
-]
+select = [ "E", "F", "I", "B", "UP", "SIM", ]
 ignore = []
 
 [tool.ruff.format]
