@@ -4,9 +4,11 @@ Szablon projektu Python oparty o Copier.
 
 Pozwala szybko wygenerować nowe repozytorium z gotową konfiguracją narzędzi i wybranym wariantem struktury projektu:
 
-- `no-package`
-- `package + flat`
-- `package + hexagonal`
+| Tryb        | Opis                                                           |
+| ----------- | -------------------------------------------------------------- |
+| `script`    | Prosty projekt skryptowy, z jednym plikiem wejściowym          |
+| `flat`      | Prosty projekt pakietowy CLI, z płaską strukturą               |
+| `hexagonal` | Projekt pakietowy CLI z podstawową strukturą hexagonalną       |
 
 ## Wymagania
 
@@ -35,11 +37,11 @@ Formatowanie kodu repozytorium szablonu:
 
 `just format`
 
-Lint:
+Ruff lint:
 
 `just ruff`
 
-Automatyczne poprawki lint:
+Automatyczne poprawki ruff lint:
 
 `just ruff-fix`
 
@@ -59,21 +61,21 @@ Pełny zestaw sprawdzeń:
 
 Wygenerowanie wariantu `package + flat`:
 
-`just render-flat`
+`just flat`
 
 Wygenerowanie wariantu `package + hexagonal`:
 
-`just render-hexagonal`
+`just hexagonal`
 
-Wygenerowanie wariantu `no-package`:
+Wygenerowanie wariantu `script`:
 
-`just render-no-package`
+`just script`
 
-Wygenerowanie wszystkich wariantów testowych:
+Wygenerowanie wszystkich wariantów testowych (wrzucane są do `examples/`):
 
 `just smoke`
 
-Usunięcie katalogów testowych z `/tmp`:
+Usunięcie katalogów testowych z `examples/`:
 
 `just clean`
 
@@ -95,12 +97,15 @@ Uruchomienie hooków dla wszystkich plików:
 
 ## Struktura repozytorium
 
-- `copier.yml` — pytania i konfiguracja Copiera
-- `template/common/` — pliki wspólne dla wszystkich wariantów
-- `template/variants/` — pliki zależne od wybranego wariantu
-- `template/scripts/post_render.py.jinja` — składanie końcowego projektu po renderze
-- `tests/` — testy szablonu
-- `scripts/` — pomocnicze skrypty developerskie
+| Plik / katalog           | Opis                                     |
+| ------------------------ | ---------------------------------------- |
+| `copier.yml`             | pytania i konfiguracja Copiera           |
+| `docs/`                  | przydatne informacje                     |
+| `template/common/`       | pliki wspólne dla wszystkich wariantów   |
+| `template/variants/`     | pliki zależne od wybranego wariantu      |
+| `tests/`                 | testy szablonu                           |
+| `scripts/`               | pomocnicze skrypty developerskie         |
+| `scripts/post_render.py` | składanie końcowego projektu po renderze |
 
 ## Workflow
 

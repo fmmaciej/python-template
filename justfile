@@ -30,9 +30,6 @@ test:
 
 check: format ruff mypy test
 
-precommit-install:
-    uv run pre-commit install
-
 render-flat:
     rm -rf {{ tmp_dir }}/{{ flat_dir }}
     {{ copier_base }} {{ tmp_dir }}/{{ flat_dir }} {{ copier_flags }} --data project_slug=demo-flat --data package_mode=package --data package_layout=flat
