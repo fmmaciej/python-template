@@ -1,0 +1,63 @@
+_min_copier_version: "9"
+
+_subdirectory: template
+
+_tasks:
+  - >-
+    {% if package_mode == "no-package" %}
+    {{ _copier_python }} "{{ _copier_conf.src_path }}/scripts/post_render.py"
+    --project-root .
+    --package-mode no-package
+    {% else %}
+    {{ _copier_python }} "{{ _copier_conf.src_path }}/scripts/post_render.py"
+    --project-root .
+    --package-mode package
+    --package-layout {{ package_layout }}
+    {% endif %}
+
+project_slug:
+  type: str
+  help: "Slug projektu, np. todo-cli"
+  validator: >-
+    {% if not (project_slug | regex_search('^[a-z][a-z0-9-]+$')) %}
+    project_slug musi pasować do ^[a-z][a-z0-9-]+$
+    {% endif %}
+
+project_module:
+  type: str
+  default: "{{ project_slug | replace('-', '_') }}"
+  when: false
+
+python_version:
+  type: str
+  help: "Wersja Pythona"
+  default: "3.12"
+  choices:
+    - "3.11"
+    - "3.12"
+    - "3.13"
+
+package_mode:
+  type: str
+  help: "Czy projekt ma być pakietem?"
+  default: "package"
+  choices:
+    - no-package
+    - package
+
+package_layout:
+  type: str
+  help: "Układ projektu pakietowego"
+  default: "flat"
+  choices:
+    - flat
+    - hexagonal
+  when: "{{ package_mode == 'package' }}"
+
+cli_framework:
+  type: str
+  default: >-
+    {% if package_mode == "no-package" %}argparse{% else %}typer{% endif %}
+  when: false
+
+_answers_file: ".copier-answers.yml"

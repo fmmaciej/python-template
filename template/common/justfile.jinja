@@ -1,0 +1,36 @@
+set shell := ["bash", "-cu"]
+
+default:
+    @just --list
+
+install:
+    uv sync
+
+format:
+    uv run ruff format .
+    uv run ruff check . --fix
+
+lint:
+    uv run ruff check .
+
+typecheck:
+{% if package_mode == "package" %}
+    uv run mypy src
+{% else %}
+    uv run mypy main.py
+{% endif %}
+
+test:
+    uv run pytest
+
+check: format lint typecheck test
+
+precommit-install:
+    uv run pre-commit install
+
+run:
+{% if package_mode == "no-package" %}
+    uv run python main.py
+{% else %}
+    uv run {{ project_slug }}
+{% endif %}

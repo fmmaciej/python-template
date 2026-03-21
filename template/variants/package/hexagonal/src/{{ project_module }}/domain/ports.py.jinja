@@ -1,0 +1,10 @@
+from __future__ import annotations
+
+from typing import Protocol
+
+from .entities import Greeting
+from .value_objects import UserName
+
+
+class GreetingPort(Protocol):
+    def build_greeting(self, name: UserName) -> Greeting: ...

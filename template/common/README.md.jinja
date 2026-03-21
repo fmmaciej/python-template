@@ -1,0 +1,38 @@
+# {{ project_slug }}
+
+## Requirements
+
+- Python {{ python_version }}
+- uv
+
+## Quick start
+
+1. Create environment: `uv venv`
+2. Install dependencies: `uv sync`
+3. Activate environment if needed:
+   - macOS/Linux: `source .venv/bin/activate`
+4. Run the project:
+
+{% if package_mode == "no-package" %}
+`uv run python main.py`
+{% elif package_layout == "flat" %}
+`uv run {{ project_slug }}`
+{% else %}
+`uv run {{ project_slug }}`
+{% endif %}
+
+## Development
+
+- format: `just format`
+- lint: `just lint`
+- type-check: `just typecheck`
+- test: `just test`
+- check all: `just check`
+
+## Pre-commit
+
+Install hooks: `uv run pre-commit install`
+
+## Configuration
+
+Copy example env if needed: `cp .env.example .env`

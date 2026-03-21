@@ -1,0 +1,46 @@
+[project]
+dependencies = []
+description = "Copier template for bootstraping Python projects"
+name = "python-template"
+readme = "README.md"
+requires-python = ">=3.12"
+version = "0.1.0"
+
+[dependency-groups]
+dev = [
+  "copier>=9.14.0",
+  "mypy>=1.19.1",
+  "pre-commit>=4.5.1",
+  "pytest>=9.0.2",
+  "ruff>=0.15.7",
+]
+
+[tool.ruff]
+exclude = ["examples"]
+line-length = 100
+src = ["scripts"]
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = []
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+
+[tool.mypy]
+check_untyped_defs = true
+exclude = ["examples"]
+files = ["scripts", "tests"]
+no_implicit_optional = true
+pretty = true
+python_version = "3.12"
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]

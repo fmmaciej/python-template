@@ -1,0 +1,6 @@
+project_slug: demo-app
+project_module: demo_app
+python_version: "3.12"
+package_mode: package
+package_layout: flat
+cli_framework: typer

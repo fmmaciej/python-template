@@ -1,0 +1,13 @@
+from __future__ import annotations
+
+from .dto import HelloCommand
+from .services import GreetingService
+
+
+class HelloUseCase:
+    def __init__(self, greeting_service: GreetingService) -> None:
+        self._greeting_service = greeting_service
+
+    def execute(self, command: HelloCommand) -> str:
+        greeting = self._greeting_service.greet(command.name)
+        return greeting.message
