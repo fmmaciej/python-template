@@ -37,15 +37,15 @@ Formatowanie kodu repozytorium szablonu:
 
 Lint:
 
-`just lint`
+`just ruff`
 
 Automatyczne poprawki lint:
 
-`just lint-fix`
+`just ruff-fix`
 
 Sprawdzanie typów:
 
-`just typecheck`
+`just mypy`
 
 Uruchomienie testów:
 
@@ -63,7 +63,7 @@ Wygenerowanie wariantu `package + flat`:
 
 Wygenerowanie wariantu `package + hexagonal`:
 
-`just render-hex`
+`just render-hexagonal`
 
 Wygenerowanie wariantu `no-package`:
 
