@@ -8,12 +8,14 @@ install:
 
 format:
     uv run ruff format .
-    uv run ruff check . --fix
 
-lint:
+ruff:
     uv run ruff check .
 
-typecheck:
+ruff-fix:
+    uv run ruff check . --fix
+
+mypy:
 {% if package_mode == "package" %}
     uv run mypy src
 {% else %}
@@ -23,10 +25,7 @@ typecheck:
 test:
     uv run pytest
 
-check: format lint typecheck test
-
-precommit-install:
-    uv run pre-commit install
+check: format ruff mypy test
 
 run:
 {% if package_mode == "no-package" %}
