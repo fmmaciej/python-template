@@ -10,6 +10,12 @@ Pozwala szybko wygenerować nowe repozytorium z gotową konfiguracją narzędzi 
 | `flat`      | Prosty projekt pakietowy CLI, z płaską strukturą               |
 | `hexagonal` | Projekt pakietowy CLI z podstawową strukturą hexagonalną       |
 
+Każdy wygenerowany projekt dostaje minimalny zestaw startowy:
+
+- konfigurację `ruff`, `mypy`, `pytest`, `pre-commit` i `just`
+- przykładowy entrypoint dla wybranego wariantu
+- katalog `tests/` z prostym smoke testem, żeby `pytest` i `mypy` działały od razu po wygenerowaniu
+
 ## Wymagania
 
 - Python 3.12+
@@ -61,19 +67,26 @@ Pełny zestaw sprawdzeń:
 
 Wygenerowanie wariantu `package + flat`:
 
-`just flat`
+`just render-flat`
 
 Wygenerowanie wariantu `package + hexagonal`:
 
-`just hexagonal`
+`just render-hex`
 
 Wygenerowanie wariantu `script`:
 
-`just script`
+`just render-script`
 
 Wygenerowanie wszystkich wariantów testowych (wrzucane są do `examples/`):
 
 `just smoke`
+
+Smoke testy repozytorium renderują każdy wariant i sprawdzają nie tylko obecność kluczowych plików, ale też podstawowy workflow wygenerowanego projektu:
+
+- `uv run pytest`
+- `uv run mypy ...`
+
+Jeśli chcesz, po renderze możesz też ręcznie przejrzeć katalogi w `examples/`, ale podstawowa walidacja renderu i startowego workflow jest wykonywana automatycznie.
 
 Usunięcie katalogów testowych z `examples/`:
 
@@ -112,5 +125,5 @@ Uruchomienie hooków dla wszystkich plików:
 1. Zmieniasz pliki template
 2. Uruchamiasz `just check`
 3. Uruchamiasz `just smoke`
-4. Sprawdzasz wygenerowane projekty
+4. Opcjonalnie ręcznie przeglądasz wygenerowane projekty w `examples/`
 5. Commitujesz zmiany

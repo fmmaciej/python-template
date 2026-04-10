@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from .bootstrap import bootstrap
+from .app import build_app
 
 
 def main() -> None:
-    app = bootstrap()
+    app = build_app()
     app()
 
 

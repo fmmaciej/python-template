@@ -15,9 +15,9 @@ lint:
 
 typecheck:
 {% if package_mode == "package" %}
-    uv run mypy src
+    uv run mypy src tests
 {% else %}
-    uv run mypy main.py
+    uv run mypy main.py tests
 {% endif %}
 
 test:

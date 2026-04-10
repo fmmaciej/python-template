@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from .adapters.inbound.cli_typer import build_cli
 from .adapters.outbound.json_repository import GreetingProvider
 from .application.services import GreetingService
 from .application.use_cases import HelloUseCase
+from .cli.cli_typer import build_cli
 from .infrastructure.logging_config import configure_logging
 
 
-def bootstrap():
+def build_app():
     configure_logging()
 
     greeting_provider = GreetingProvider()

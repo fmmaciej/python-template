@@ -1,0 +1,51 @@
+from __future__ import annotations
+
+{% if package_mode == "no-package" %}
+import subprocess
+import sys
+from pathlib import Path
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_cli_greets_named_user() -> None:
+    result = subprocess.run(
+        [sys.executable, "main.py", "--name", "Alice"],
+        capture_output=True,
+        check=False,
+        cwd=PROJECT_ROOT,
+        text=True,
+    )
+
+    assert result.returncode == 0
+    assert result.stdout.strip() == "Hello, Alice!"
+{% elif package_layout == "flat" %}
+from typer.testing import CliRunner
+
+from {{ project_module }}.cli import app
+
+
+runner = CliRunner()
+
+
+def test_cli_greets_named_user() -> None:
+    result = runner.invoke(app, ["--name", "Alice"])
+
+    assert result.exit_code == 0
+    assert "Hello, Alice!" in result.stdout
+{% else %}
+from typer.testing import CliRunner
+
+from {{ project_module }}.app import build_app
+
+
+runner = CliRunner()
+
+
+def test_cli_greets_named_user() -> None:
+    result = runner.invoke(build_app(), ["--name", "Alice"])
+
+    assert result.exit_code == 0
+    assert "Hello, Alice!" in result.stdout
+{% endif %}

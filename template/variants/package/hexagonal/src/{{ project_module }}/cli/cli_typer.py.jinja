@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import typer
 
-from ...application.dto import HelloCommand
-from ...application.use_cases import HelloUseCase
+from ..application.dto import HelloCommand
+from ..application.use_cases import HelloUseCase
 
 
 def build_cli(use_case: HelloUseCase) -> typer.Typer:

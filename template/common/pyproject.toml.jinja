@@ -20,7 +20,7 @@ dev = [
 
 {% if package_mode == "package" %}
 [project.scripts]
-{{ project_slug }} = "{{ project_module }}.__main__:main"
+{{ project_slug }} = "{{ project_module }}.main:main"
 {% endif %}
 
 [build-system]
