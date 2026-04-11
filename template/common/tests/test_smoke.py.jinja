@@ -1,10 +1,8 @@
 from __future__ import annotations
-
 {% if mode == "no-package" %}
 import subprocess
 import sys
 from pathlib import Path
-
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,7 +23,6 @@ from typer.testing import CliRunner
 
 from {{ project_module }}.cli import app
 
-
 runner = CliRunner()
 
 
@@ -40,7 +37,6 @@ from typer.testing import CliRunner
 
 from {{ project_module }}.app import build_app
 from {{ project_module }}.domain.value_objects.user_name import UserName
-
 
 runner = CliRunner()
 
