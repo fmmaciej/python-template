@@ -1,8 +1,8 @@
-# {{ project_slug }}
+# {{ project }}
 
 ## Requirements
 
-- Python {{ python_version }}
+- Python {{ python }}
 - uv
 
 ## Quick start
@@ -13,12 +13,12 @@
    - macOS/Linux: `source .venv/bin/activate`
 4. Run the project:
 
-{% if package_mode == "no-package" %}
+{% if mode == "no-package" %}
 `uv run python main.py`
-{% elif package_layout == "flat" %}
-`uv run {{ project_slug }}`
+{% elif layout == "flat" %}
+`uv run {{ project }}`
 {% else %}
-`uv run {{ project_slug }}`
+`uv run {{ project }}`
 {% endif %}
 
 ## Development
@@ -29,7 +29,7 @@
 - test: `just test`
 - check all: `just check`
 
-{% if package_layout == "hexagonal" %}
+{% if layout == "hexagonal" %}
 ## Hex Layout
 
 - `src/{{ project_module }}/main.py` uruchamia aplikację

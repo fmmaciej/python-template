@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-{% if package_mode == "no-package" %}
+{% if mode == "no-package" %}
 import subprocess
 import sys
 from pathlib import Path
@@ -20,7 +20,7 @@ def test_cli_greets_named_user() -> None:
 
     assert result.returncode == 0
     assert result.stdout.strip() == "Hello, Alice!"
-{% elif package_layout == "flat" %}
+{% elif layout == "flat" %}
 from typer.testing import CliRunner
 
 from {{ project_module }}.cli import app

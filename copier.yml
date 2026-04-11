@@ -4,7 +4,7 @@ _subdirectory: template
 
 _tasks:
   - >-
-    {% if package_mode == "no-package" %}
+    {% if mode == "no-package" %}
     {{ _copier_python }} "{{ _copier_conf.src_path }}/scripts/post_render.py"
     --project-root .
     --package-mode no-package
@@ -12,23 +12,23 @@ _tasks:
     {{ _copier_python }} "{{ _copier_conf.src_path }}/scripts/post_render.py"
     --project-root .
     --package-mode package
-    --package-layout {{ package_layout }}
+    --package-layout {{ layout }}
     {% endif %}
 
-project_slug:
+project:
   type: str
-  help: "Project slug, for example todo-cli"
+  help: "Project name, for example todo-cli"
   validator: >-
-    {% if not (project_slug | regex_search('^[a-z][a-z0-9-]+$')) %}
-    project_slug must match ^[a-z][a-z0-9-]+$
+    {% if not (project | regex_search('^[a-z][a-z0-9-]+$')) %}
+    project must match ^[a-z][a-z0-9-]+$
     {% endif %}
 
 project_module:
   type: str
-  default: "{{ project_slug | replace('-', '_') }}"
+  default: "{{ project | replace('-', '_') }}"
   when: false
 
-python_version:
+python:
   type: str
   help: "Python version"
   default: "3.12"
@@ -37,7 +37,7 @@ python_version:
     - "3.12"
     - "3.13"
 
-package_mode:
+mode:
   type: str
   help: "Should the project be a package?"
   default: "package"
@@ -45,13 +45,13 @@ package_mode:
     - no-package
     - package
 
-package_layout:
+layout:
   type: str
   help: "Package project layout"
   default: "flat"
   choices:
     - flat
     - hexagonal
-  when: "{{ package_mode == 'package' }}"
+  when: "{{ mode == 'package' }}"
 
 _answers_file: ".copier-answers.yml"

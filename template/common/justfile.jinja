@@ -14,7 +14,7 @@ lint:
     uv run ruff check .
 
 typecheck:
-{% if package_mode == "package" %}
+{% if mode == "package" %}
     uv run mypy src tests
 {% else %}
     uv run mypy main.py tests
@@ -29,8 +29,8 @@ precommit-install:
     uv run pre-commit install
 
 run:
-{% if package_mode == "no-package" %}
+{% if mode == "no-package" %}
     uv run python main.py
 {% else %}
-    uv run {{ project_slug }}
+    uv run {{ project }}
 {% endif %}

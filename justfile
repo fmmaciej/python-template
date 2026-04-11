@@ -7,7 +7,7 @@ script_name := "demo-script"
 flat_name := "demo-flat"
 hexagonal_name := "demo-hexagonal"
 
-copier_flags := "--trust --defaults --data python_version=3.12"
+copier_flags := "--trust --defaults --data python=3.12"
 
 default:
     @just --list
@@ -41,15 +41,15 @@ sync-template-source:
 
 render-flat: sync-template-source
     rm -rf {{ tmp_dir }}/{{ flat_name }}
-    uv run copier copy {{ tmp_source_dir }} {{ tmp_dir }}/{{ flat_name }} {{ copier_flags }} --data project_slug={{ flat_name }} --data package_mode=package --data package_layout=flat
+    uv run copier copy {{ tmp_source_dir }} {{ tmp_dir }}/{{ flat_name }} {{ copier_flags }} --data project={{ flat_name }} --data mode=package --data layout=flat
 
 render-hex: sync-template-source
     rm -rf {{ tmp_dir }}/{{ hexagonal_name }}
-    uv run copier copy {{ tmp_source_dir }} {{ tmp_dir }}/{{ hexagonal_name }} {{ copier_flags }} --data project_slug={{ hexagonal_name }} --data package_mode=package --data package_layout=hexagonal
+    uv run copier copy {{ tmp_source_dir }} {{ tmp_dir }}/{{ hexagonal_name }} {{ copier_flags }} --data project={{ hexagonal_name }} --data mode=package --data layout=hexagonal
 
 render-script: sync-template-source
     rm -rf {{ tmp_dir }}/{{ script_name }}
-    uv run copier copy {{ tmp_source_dir }} {{ tmp_dir }}/{{ script_name }} {{ copier_flags }} --data project_slug={{ script_name }} --data package_mode=no-package
+    uv run copier copy {{ tmp_source_dir }} {{ tmp_dir }}/{{ script_name }} {{ copier_flags }} --data project={{ script_name }} --data mode=no-package
 
 smoke: render-flat render-hex render-script
 

@@ -1,11 +1,11 @@
 [project]
-name = "{{ project_slug }}"
+name = "{{ project }}"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">={{ python_version }}"
+requires-python = ">={{ python }}"
 dependencies = [
-{% if package_mode == "package" %}
+{% if mode == "package" %}
   "typer>=0.16.0",
 {% endif %}
 ]
@@ -18,23 +18,23 @@ dev = [
   "ruff>=0.6.0",
 ]
 
-{% if package_mode == "package" %}
+{% if mode == "package" %}
 [project.scripts]
-{{ project_slug }} = "{{ project_module }}.main:main"
+{{ project }} = "{{ project_module }}.main:main"
 {% endif %}
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-{% if package_mode == "package" %}
+{% if mode == "package" %}
 [tool.hatch.build.targets.wheel]
 packages = ["src/{{ project_module }}"]
 {% endif %}
 
 [tool.ruff]
 line-length = 100
-target-version = "py{{ python_version | replace('.', '') }}"
+target-version = "py{{ python | replace('.', '') }}"
 src = ["src", "."]
 
 [tool.ruff.lint]
@@ -54,7 +54,7 @@ indent-style = "space"
 line-ending = "lf"
 
 [tool.mypy]
-python_version = "{{ python_version }}"
+python_version = "{{ python }}"
 strict = false
 warn_unused_configs = true
 warn_redundant_casts = true
@@ -63,7 +63,7 @@ warn_return_any = true
 no_implicit_optional = true
 check_untyped_defs = true
 pretty = true
-{% if package_mode == "package" %}
+{% if mode == "package" %}
 mypy_path = ["src"]
 {% endif %}
 
@@ -72,4 +72,4 @@ testpaths = ["tests"]
 addopts = "-ra"
 
 [tool.uv]
-package = {{ "true" if package_mode == "package" else "false" }}
+package = {{ "true" if mode == "package" else "false" }}

@@ -20,18 +20,64 @@ Each generated project includes a minimal starter setup:
 
 - Python 3.12+
 - `uv`
+- `just` for local usage from a cloned repository
 
 ## Copier Usage
 
 Generate a project with interactive prompts:
 
-`uv run copier copy . ../new-project --trust`
+`just copier copy . ../new-project --trust`
 
 Generate a project with default answers:
 
-`uv run copier copy . ../new-project --trust --defaults`
+`just copier copy . ../new-project --trust --defaults`
 
-For local work in this repository, `just copier ...` is available as a short wrapper around `uv run copier ...`.
+Without `--defaults`, Copier asks the template questions interactively.
+
+With `--defaults`, Copier uses the default values defined in `copier.yml`. Values passed with `--data` still override those defaults.
+
+`just copier ...` is a short wrapper around `uv run copier ...`.
+
+Direct `uv` usage is also available:
+
+`uv run copier copy . ../new-project --trust`
+
+## Remote Usage
+
+Generate a project directly from a remote Git repository into the current directory:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust`
+
+Generate a flat package project with explicit template data:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --defaults --data project=my-app --data python=3.12 --data mode=package --data layout=flat`
+
+Generate a hexagonal package project:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --defaults --data project=my-app --data python=3.12 --data mode=package --data layout=hexagonal`
+
+Generate a script project:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --defaults --data project=my-app --data python=3.12 --data mode=no-package`
+
+Available template parameters:
+
+| Parameter        | Description                            | Values                    |
+| ---------------- | -------------------------------------- | ------------------------- |
+| `project`        | Project name and package/script name   | e.g. `my-app`             |
+| `python`         | Target Python version                  | `3.11`, `3.12`, `3.13`    |
+| `mode`           | Project type                           | `no-package`, `package`   |
+| `layout`         | Package layout, only for package mode  | `flat`, `hexagonal`       |
+
+Generate from a specific tagged version:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --vcs-ref v1.0.0`
+
+Generate from the current `HEAD` of the remote repository:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --vcs-ref HEAD`
+
+When using a remote Git repository, Copier renders the selected Git reference rather than a local working tree.
 
 ## After Generation
 
