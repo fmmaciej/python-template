@@ -31,6 +31,8 @@ Generate a project with default answers:
 
 `uv run copier copy . ../new-project --trust --defaults`
 
+For local work in this repository, `just copier ...` is available as a short wrapper around `uv run copier ...`.
+
 ## After Generation
 
 - `uv sync`

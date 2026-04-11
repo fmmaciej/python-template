@@ -15,6 +15,9 @@ Dokument dotyczy utrzymania repozytorium template, nie użycia wygenerowanego pr
 - `just mypy`
 - `just test`
 - `just check`
+- `just copier ...`
+
+`just copier ...` jest krótkim wrapperem na `uv run copier ...`.
 
 ## Render examples
 

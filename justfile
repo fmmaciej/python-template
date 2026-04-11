@@ -12,7 +12,10 @@ copier_flags := "--trust --defaults --data python_version=3.12"
 default:
     @just --list
 
-install:
+copier +args:
+    uv run copier {{args}}
+
+sync:
     uv sync
 
 format:
