@@ -44,21 +44,25 @@ Direct `uv` usage is also available:
 
 ## Remote Usage
 
-Generate a project directly from a remote Git repository into the current directory:
+Example shell variable:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust`
+`PROJECT_NAME="my-app"`
+
+Generate a project from a remote Git repository into a new directory:
+
+`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust`
 
 Generate a flat package project with explicit template data:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --defaults --data project=my-app --data python=3.12 --data mode=package --data layout=flat`
+`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=package --data layout=flat`
 
 Generate a hexagonal package project:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --defaults --data project=my-app --data python=3.12 --data mode=package --data layout=hexagonal`
+`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=package --data layout=hexagonal`
 
 Generate a script project:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --defaults --data project=my-app --data python=3.12 --data mode=no-package`
+`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=no-package`
 
 Available template parameters:
 
@@ -71,11 +75,11 @@ Available template parameters:
 
 Generate from a specific tagged version:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --vcs-ref v1.0.0`
+`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --vcs-ref v1.0.0`
 
 Generate from the current `HEAD` of the remote repository:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git . --trust --vcs-ref HEAD`
+`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --vcs-ref HEAD`
 
 When using a remote Git repository, Copier renders the selected Git reference rather than a local working tree.
 
