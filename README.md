@@ -1,129 +1,58 @@
 # python-template
 
-Szablon projektu Python oparty o Copier.
+A Python project template based on Copier.
 
-Pozwala szybko wygenerować nowe repozytorium z gotową konfiguracją narzędzi i wybranym wariantem struktury projektu:
+It generates a new repository with a ready-to-use toolchain and a selected project structure:
 
-| Tryb        | Opis                                                           |
+| Mode        | Description                                                    |
 | ----------- | -------------------------------------------------------------- |
-| `script`    | Prosty projekt skryptowy, z jednym plikiem wejściowym          |
-| `flat`      | Prosty projekt pakietowy CLI, z płaską strukturą               |
-| `hexagonal` | Projekt pakietowy CLI z podstawową strukturą hexagonalną       |
+| `script`    | Simple script project with a single entry file                 |
+| `flat`      | Simple CLI package project with a flat structure               |
+| `hexagonal` | CLI package project with a lightweight hexagonal structure     |
 
-Każdy wygenerowany projekt dostaje minimalny zestaw startowy:
+Each generated project includes a minimal starter setup:
 
-- konfigurację `ruff`, `mypy`, `pytest`, `pre-commit` i `just`
-- przykładowy entrypoint dla wybranego wariantu
-- katalog `tests/` z prostym smoke testem, żeby `pytest` i `mypy` działały od razu po wygenerowaniu
+- `ruff`, `mypy`, `pytest`, `pre-commit`, and `just` configuration
+- a sample entrypoint for the selected variant
+- a `tests/` directory with a simple smoke test so `pytest` and `mypy` work immediately after generation
 
-## Wymagania
+## Requirements
 
 - Python 3.12+
 - `uv`
-- `just`
-- `git`
 
-## Instalacja
+## Copier Usage
 
-Utworzenie środowiska i instalacja zależności developerskich:
+Generate a project with interactive prompts:
 
-`uv sync`
+`uv run copier copy . ../new-project --trust`
 
-Instalacja hooków pre-commit:
+Generate a project with default answers:
 
-`uv run pre-commit install`
+`uv run copier copy . ../new-project --trust --defaults`
 
-## Najważniejsze komendy
+## After Generation
 
-Instalacja zależności:
+- `uv sync`
+- `just check`
+- `uv run pre-commit install`
 
-`uv sync`
+## For Template Maintainers
 
-Formatowanie kodu repozytorium szablonu:
+Maintenance notes for this repository are available in:
 
-`just format`
+- [docs/development.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/development.md)
+- [docs/formatting.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/formatting.md)
+- [docs/hex.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/hex.md)
 
-Ruff lint:
+## Repository Structure
 
-`just ruff`
-
-Automatyczne poprawki ruff lint:
-
-`just ruff-fix`
-
-Sprawdzanie typów:
-
-`just mypy`
-
-Uruchomienie testów:
-
-`just test`
-
-Pełny zestaw sprawdzeń:
-
-`just check`
-
-## Testowanie renderowania szablonu
-
-Wygenerowanie wariantu `package + flat`:
-
-`just render-flat`
-
-Wygenerowanie wariantu `package + hexagonal`:
-
-`just render-hex`
-
-Wygenerowanie wariantu `script`:
-
-`just render-script`
-
-Wygenerowanie wszystkich wariantów testowych (wrzucane są do `examples/`):
-
-`just smoke`
-
-Smoke testy repozytorium renderują każdy wariant i sprawdzają nie tylko obecność kluczowych plików, ale też podstawowy workflow wygenerowanego projektu:
-
-- `uv run pytest`
-- `uv run mypy ...`
-
-Jeśli chcesz, po renderze możesz też ręcznie przejrzeć katalogi w `examples/`, ale podstawowa walidacja renderu i startowego workflow jest wykonywana automatycznie.
-
-Usunięcie katalogów testowych z `examples/`:
-
-`just clean`
-
-## Ręczne użycie Copiera
-
-Wygenerowanie projektu z pytaniami interaktywnymi:
-
-`uv run copier copy . ../nowy-projekt --trust`
-
-Wygenerowanie projektu z domyślnymi odpowiedziami:
-
-`uv run copier copy . ../nowy-projekt --trust --defaults`
-
-## Pre-commit
-
-Uruchomienie hooków dla wszystkich plików:
-
-`uv run pre-commit run --all-files`
-
-## Struktura repozytorium
-
-| Plik / katalog           | Opis                                     |
+| File / directory         | Description                              |
 | ------------------------ | ---------------------------------------- |
-| `copier.yml`             | pytania i konfiguracja Copiera           |
-| `docs/`                  | przydatne informacje                     |
-| `template/common/`       | pliki wspólne dla wszystkich wariantów   |
-| `template/variants/`     | pliki zależne od wybranego wariantu      |
-| `tests/`                 | testy szablonu                           |
-| `scripts/`               | pomocnicze skrypty developerskie         |
-| `scripts/post_render.py` | składanie końcowego projektu po renderze |
-
-## Workflow
-
-1. Zmieniasz pliki template
-2. Uruchamiasz `just check`
-3. Uruchamiasz `just smoke`
-4. Opcjonalnie ręcznie przeglądasz wygenerowane projekty w `examples/`
-5. Commitujesz zmiany
+| `copier.yml`             | Copier questions and configuration       |
+| `docs/`                  | additional repository documentation      |
+| `template/common/`       | files shared by all variants             |
+| `template/variants/`     | files specific to each variant           |
+| `tests/`                 | template tests                           |
+| `scripts/`               | helper scripts for repository work       |
+| `scripts/post_render.py` | final project composition after render   |

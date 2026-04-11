@@ -1,0 +1,9 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True, slots=True)
+class Settings:
+    # Static application settings.
+    app_name: str = "{{ project_slug }}"

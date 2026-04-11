@@ -1,0 +1,18 @@
+from __future__ import annotations
+
+from ...domain.entities.greeting import Greeting
+from ...domain.value_objects.user_name import UserName
+from ..dto.say_hello_command import SayHelloCommand
+from ..dto.say_hello_result import SayHelloResult
+from ..ports.greeting_template_repository import GreetingTemplateRepository
+
+
+class SayHelloUseCase:
+    def __init__(self, template_repository: GreetingTemplateRepository) -> None:
+        self._template_repository = template_repository
+
+    # Application use case independent of CLI and adapter implementations.
+    def execute(self, command: SayHelloCommand) -> SayHelloResult:
+        template = self._template_repository.get_template()
+        greeting = Greeting.for_user(template=template, user_name=UserName(command.name))
+        return SayHelloResult(message=greeting.message)

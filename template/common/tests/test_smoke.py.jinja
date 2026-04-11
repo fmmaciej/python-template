@@ -35,9 +35,11 @@ def test_cli_greets_named_user() -> None:
     assert result.exit_code == 0
     assert "Hello, Alice!" in result.stdout
 {% else %}
+import pytest
 from typer.testing import CliRunner
 
 from {{ project_module }}.app import build_app
+from {{ project_module }}.domain.value_objects.user_name import UserName
 
 
 runner = CliRunner()
@@ -48,4 +50,9 @@ def test_cli_greets_named_user() -> None:
 
     assert result.exit_code == 0
     assert "Hello, Alice!" in result.stdout
+
+
+def test_user_name_rejects_blank_value() -> None:
+    with pytest.raises(ValueError, match="cannot be empty"):
+        UserName("   ")
 {% endif %}

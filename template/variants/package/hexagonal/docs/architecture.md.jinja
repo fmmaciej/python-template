@@ -1,0 +1,41 @@
+# Architecture
+
+This variant uses a lightweight hexagonal layout.
+
+## Structure
+
+- `src/{{ project_module }}/main.py`
+  Thin process entrypoint.
+
+- `src/{{ project_module }}/app.py`
+  Application composition root.
+
+- `src/{{ project_module }}/cli/commands.py`
+  CLI layer and command definitions.
+
+- `src/{{ project_module }}/application/use_cases/`
+  Use cases and system operation orchestration.
+
+- `src/{{ project_module }}/application/dto/`
+  Input and output objects for use cases.
+
+- `src/{{ project_module }}/application/ports/`
+  Contracts required by the application layer.
+
+- `src/{{ project_module }}/domain/`
+  Domain model: entities and value objects.
+
+- `src/{{ project_module }}/adapters/repositories/`
+  Repository and storage port implementations.
+
+- `src/{{ project_module }}/adapters/clients/`
+  HTTP integrations, external API clients, and other technical integrations.
+
+## Boundaries
+
+- `main.py` starts the application
+- `app.py` wires dependencies
+- `cli/` contains the input layer
+- `application/` contains use cases, DTOs, and ports
+- `domain/` contains the domain model
+- `adapters/` contains technical implementations

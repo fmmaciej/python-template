@@ -3,6 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 
-@dataclass(frozen=True)
-class Greeting:
+@dataclass(frozen=True, slots=True)
+class SayHelloResult:
     message: str

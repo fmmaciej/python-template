@@ -1,0 +1,8 @@
+from __future__ import annotations
+
+from ...application.ports.greeting_template_repository import GreetingTemplateRepository
+
+
+class DefaultGreetingTemplateRepository(GreetingTemplateRepository):
+    def get_template(self) -> str:
+        return "Hello"

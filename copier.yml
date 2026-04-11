@@ -17,10 +17,10 @@ _tasks:
 
 project_slug:
   type: str
-  help: "Slug projektu, np. todo-cli"
+  help: "Project slug, for example todo-cli"
   validator: >-
     {% if not (project_slug | regex_search('^[a-z][a-z0-9-]+$')) %}
-    project_slug musi pasować do ^[a-z][a-z0-9-]+$
+    project_slug must match ^[a-z][a-z0-9-]+$
     {% endif %}
 
 project_module:
@@ -30,7 +30,7 @@ project_module:
 
 python_version:
   type: str
-  help: "Wersja Pythona"
+  help: "Python version"
   default: "3.12"
   choices:
     - "3.11"
@@ -39,7 +39,7 @@ python_version:
 
 package_mode:
   type: str
-  help: "Czy projekt ma być pakietem?"
+  help: "Should the project be a package?"
   default: "package"
   choices:
     - no-package
@@ -47,17 +47,11 @@ package_mode:
 
 package_layout:
   type: str
-  help: "Układ projektu pakietowego"
+  help: "Package project layout"
   default: "flat"
   choices:
     - flat
     - hexagonal
   when: "{{ package_mode == 'package' }}"
-
-cli_framework:
-  type: str
-  default: >-
-    {% if package_mode == "no-package" %}argparse{% else %}typer{% endif %}
-  when: false
 
 _answers_file: ".copier-answers.yml"

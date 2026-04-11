@@ -1,0 +1,14 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+
+from ..value_objects.user_name import UserName
+
+
+@dataclass(frozen=True, slots=True)
+class Greeting:
+    message: str
+
+    @classmethod
+    def for_user(cls, template: str, user_name: UserName) -> "Greeting":
+        return cls(message=f"{template}, {user_name.value}!")

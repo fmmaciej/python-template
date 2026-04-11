@@ -1,0 +1,26 @@
+from __future__ import annotations
+
+import typer
+
+from ..application.dto.say_hello_command import SayHelloCommand
+from ..application.use_cases.say_hello import SayHelloUseCase
+from ..config.settings import Settings
+
+
+def build_cli(
+    settings: Settings,
+    use_case: SayHelloUseCase,
+) -> typer.Typer:
+    app = typer.Typer(help=f"{settings.app_name} CLI")
+
+    @app.command()
+    def hello(name: str = "world") -> None:
+        # CLI input mapped to the use case boundary.
+        try:
+            result = use_case.execute(SayHelloCommand(name=name))
+        except ValueError as exc:
+            raise typer.BadParameter(str(exc), param_hint="name") from exc
+
+        print(result.message)
+
+    return app

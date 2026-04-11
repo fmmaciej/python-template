@@ -84,8 +84,23 @@ def test_render_package_hexagonal(tmp_path: Path) -> None:
     target = tmp_path / "demo-hex"
     render(target, project_slug="demo-hex", package_mode="package", package_layout="hexagonal")
 
+    assert (target / "src" / "demo_hex" / "__main__.py").exists()
     assert (target / "src" / "demo_hex" / "main.py").exists()
     assert (target / "src" / "demo_hex" / "app.py").exists()
+    assert (target / "src" / "demo_hex" / "config" / "settings.py").exists()
+    assert (target / "src" / "demo_hex" / "application" / "use_cases" / "say_hello.py").exists()
+    assert (target / "src" / "demo_hex" / "application" / "dto" / "say_hello_command.py").exists()
+    assert (target / "src" / "demo_hex" / "domain" / "value_objects" / "user_name.py").exists()
+    assert (
+        target
+        / "src"
+        / "demo_hex"
+        / "adapters"
+        / "repositories"
+        / "default_greeting_template_repository.py"
+    ).exists()
+    assert (target / "src" / "demo_hex" / "cli" / "commands.py").exists()
+    assert (target / "docs" / "architecture.md").exists()
     assert (target / "tests" / "test_smoke.py").exists()
     assert not (target / "variants").exists()
     assert not (target / "common").exists()

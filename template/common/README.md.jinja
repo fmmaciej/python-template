@@ -29,6 +29,21 @@
 - test: `just test`
 - check all: `just check`
 
+{% if package_layout == "hexagonal" %}
+## Hex Layout
+
+- `src/{{ project_module }}/main.py` uruchamia aplikację
+- `src/{{ project_module }}/app.py` składa zależności
+- `src/{{ project_module }}/cli/commands.py` to miejsce na komendy CLI
+- `src/{{ project_module }}/application/use_cases/` zawiera operacje systemowe
+- `src/{{ project_module }}/domain/` zawiera model domenowy i reguły
+- `src/{{ project_module }}/adapters/` zawiera implementacje techniczne
+
+Jeśli projekt urośnie, możesz dodać `domain/services/` dla reguł biznesowych, które nie pasują naturalnie do jednej encji albo value object.
+
+Krótki opis struktury znajdziesz też w `docs/architecture.md`.
+{% endif %}
+
 ## Pre-commit
 
 Install hooks: `uv run pre-commit install`

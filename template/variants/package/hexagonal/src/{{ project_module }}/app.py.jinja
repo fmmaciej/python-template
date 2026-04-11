@@ -1,17 +1,22 @@
 from __future__ import annotations
 
-from .adapters.outbound.json_repository import GreetingProvider
-from .application.services import GreetingService
-from .application.use_cases import HelloUseCase
-from .cli.cli_typer import build_cli
+import typer
+
+from .adapters.repositories.default_greeting_template_repository import (
+    DefaultGreetingTemplateRepository,
+)
+from .application.use_cases.say_hello import SayHelloUseCase
+from .cli.commands import build_cli
+from .config.settings import Settings
 from .infrastructure.logging_config import configure_logging
 
 
-def build_app():
+def build_app() -> typer.Typer:
+    # Application composition root.
+    settings = Settings()
     configure_logging()
 
-    greeting_provider = GreetingProvider()
-    greeting_service = GreetingService(greeting_provider)
-    hello_use_case = HelloUseCase(greeting_service)
+    template_repository = DefaultGreetingTemplateRepository()
+    use_case = SayHelloUseCase(template_repository=template_repository)
 
-    return build_cli(hello_use_case)
+    return build_cli(settings=settings, use_case=use_case)

@@ -1,9 +1,0 @@
-from __future__ import annotations
-
-from ...domain.entities import Greeting
-from ...domain.value_objects import UserName
-
-
-class GreetingProvider:
-    def build_greeting(self, name: UserName) -> Greeting:
-        return Greeting(message=f"Hello, {name.value}!")
