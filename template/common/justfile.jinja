@@ -3,34 +3,28 @@ set shell := ["bash", "-cu"]
 default:
     @just --list
 
-install:
+sync:
     uv sync
-
-format:
-    uv run ruff format .
-    uv run ruff check . --fix
-
-lint:
-    uv run ruff check .
-
-typecheck:
-{% if mode == "package" %}
-    uv run mypy src tests
-{% else %}
-    uv run mypy main.py tests
-{% endif %}
-
-test:
-    uv run pytest
-
-check: format lint typecheck test
 
 precommit-install:
     uv run pre-commit install
 
-run:
-{% if mode == "no-package" %}
-    uv run python main.py
-{% else %}
-    uv run {{ project }}
-{% endif %}
+format:
+    uv run ruff format {% if mode == "package" %}src tests{% else %}main.py tests{% endif %}
+
+ruff:
+    uv run ruff check {% if mode == "package" %}src tests{% else %}main.py tests{% endif %}
+
+ruff-fix:
+    uv run ruff check {% if mode == "package" %}src tests{% else %}main.py tests{% endif %} --fix
+
+mypy:
+    uv run mypy
+
+test:
+    uv run pytest
+
+check: format ruff mypy test
+
+{{ project }}:
+    {% if mode == "no-package" %}uv run python main.py{% else %}uv run {{ project }}{% endif %}

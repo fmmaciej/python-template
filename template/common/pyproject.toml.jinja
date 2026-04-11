@@ -63,6 +63,7 @@ warn_return_any = true
 no_implicit_optional = true
 check_untyped_defs = true
 pretty = true
+files = [{% if mode == "package" %}"src", "tests"{% else %}"main.py", "tests"{% endif %}]
 {% if mode == "package" %}
 mypy_path = ["src"]
 {% endif %}

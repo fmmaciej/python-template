@@ -62,7 +62,7 @@ def test_render_no_package(tmp_path: Path) -> None:
     assert not (target / "common").exists()
 
     run_generated_check(target, "pytest")
-    run_generated_check(target, "mypy", "main.py", "tests", "--config-file=pyproject.toml")
+    run_generated_check(target, "mypy")
 
 
 def test_render_package_flat(tmp_path: Path) -> None:
@@ -75,7 +75,7 @@ def test_render_package_flat(tmp_path: Path) -> None:
     assert not (target / "common").exists()
 
     run_generated_check(target, "pytest")
-    run_generated_check(target, "mypy", "src", "tests", "--config-file=pyproject.toml")
+    run_generated_check(target, "mypy")
 
 
 def test_render_package_hexagonal(tmp_path: Path) -> None:
@@ -104,4 +104,4 @@ def test_render_package_hexagonal(tmp_path: Path) -> None:
     assert not (target / "common").exists()
 
     run_generated_check(target, "pytest")
-    run_generated_check(target, "mypy", "src", "tests", "--config-file=pyproject.toml")
+    run_generated_check(target, "mypy")

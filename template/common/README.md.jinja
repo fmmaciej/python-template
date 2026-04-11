@@ -8,26 +8,22 @@
 ## Quick start
 
 1. Create environment: `uv venv`
-2. Install dependencies: `uv sync`
+2. Install dependencies: `just sync`
 3. Activate environment if needed:
    - macOS/Linux: `source .venv/bin/activate`
 4. Run the project:
 
-{% if mode == "no-package" %}
-`uv run python main.py`
-{% elif layout == "flat" %}
-`uv run {{ project }}`
-{% else %}
-`uv run {{ project }}`
-{% endif %}
+`just {{ project }}`
 
 ## Development
 
 - format: `just format`
-- lint: `just lint`
-- type-check: `just typecheck`
+- ruff: `just ruff`
+- ruff-fix: `just ruff-fix`
+- mypy: `just mypy`
 - test: `just test`
 - check all: `just check`
+- run: `just {{ project }}`
 
 {% if layout == "hexagonal" %}
 ## Hex Layout
@@ -46,7 +42,7 @@ Krótki opis struktury znajdziesz też w `docs/architecture.md`.
 
 ## Pre-commit
 
-Install hooks: `uv run pre-commit install`
+Install hooks: `just precommit-install`
 
 ## Configuration
 
