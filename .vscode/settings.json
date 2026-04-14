@@ -1,50 +1,26 @@
 {
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
-  "python.terminal.activateEnvironment": false,
   "python.testing.pytestEnabled": true,
   "python.testing.unittestEnabled": false,
   "python.testing.pytestArgs": [
     "tests"
   ],
   "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.autoImportCompletions": true,
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.ruff": "always",
-    "source.organizeImports.ruff": "always"
-  },
+  "python.analysis.diagnosticMode": "workspace",
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.rulers": [
       100
     ]
-  },
-  "[markdown]": {
-    "editor.wordWrap": "on",
-    "editor.quickSuggestions": {
-      "comments": "off",
-      "strings": "off",
-      "other": "off"
-    }
   },
   "files.associations": {
     "*.jinja": "jinja",
     "*.jinja2": "jinja",
     "copier.yml": "yaml"
   },
-  "files.exclude": {
-    "**/__pycache__": true,
-    "**/.mypy_cache": true,
-    "**/.pytest_cache": true,
-    "**/.ruff_cache": true,
-  },
-  "search.exclude": {
-    "**/__pycache__": true,
-    "**/.mypy_cache": true,
-    "**/.pytest_cache": true,
-    "**/.ruff_cache": true,
-    "**/.venv": true
-  },
-  "terminal.integrated.defaultProfile.osx": "zsh",
-  "terminal.integrated.cwd": "${workspaceFolder}"
+  "mypy-type-checker.reportingScope": "workspace",
+  "mypy-type-checker.cwd": "${workspaceFolder}",
+  "mypy-type-checker.args": [
+    "--config-file=pyproject.toml",
+    "--show-error-codes"
+  ]
 }
