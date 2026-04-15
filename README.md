@@ -34,6 +34,19 @@ Generate a project with default answers:
 
 Without `--defaults`, Copier asks the template questions interactively.
 
+The interactive prompts describe the available variants before you choose them.
+For a quick non-interactive overview of the workflow, run:
+
+`just help`
+
+Project shapes are selected with Copier answers:
+
+| Shape                 | Copier data                                  | Result                                                   |
+| --------------------- | -------------------------------------------- | -------------------------------------------------------- |
+| `no-package`          | `--data mode=no-package`                     | one `main.py` script with an `argparse` CLI              |
+| `package + flat`      | `--data mode=package --data layout=flat`     | installable Typer CLI package with a small `src/` layout |
+| `package + hexagonal` | `--data mode=package --data layout=hexagonal` | installable Typer CLI package with layered architecture  |
+
 With `--defaults`, Copier uses the default values defined in `copier.yml`. Values passed with `--data` still override those defaults.
 
 `just copier ...` is a short wrapper around `uv run copier ...`.
@@ -90,6 +103,8 @@ When using a remote Git repository, Copier renders the selected Git reference ra
 - `uv run pre-commit install`
 
 ## For Template Maintainers
+
+Run `just dev-help` for maintainer commands.
 
 Maintenance notes for this repository are available in:
 

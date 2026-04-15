@@ -17,7 +17,7 @@ _tasks:
 
 project:
   type: str
-  help: "Project name, for example todo-cli"
+  help: "Project name, for example todo-cli. This becomes the package name or script name."
   validator: >-
     {% if not (project | regex_search('^[a-z][a-z0-9-]+$')) %}
     project must match ^[a-z][a-z0-9-]+$
@@ -30,7 +30,7 @@ project_module:
 
 python:
   type: str
-  help: "Python version"
+  help: "Target Python version for pyproject.toml, Ruff, and mypy."
   default: "3.12"
   choices:
     - "3.11"
@@ -39,19 +39,25 @@ python:
 
 mode:
   type: str
-  help: "Should the project be a package?"
+  help: >-
+    Project type.
+    Choose no-package for a small script with main.py and argparse.
+    Choose package for an installable CLI package with src/ layout, Typer, and a console entry point.
   default: "package"
   choices:
-    - no-package
-    - package
+    "script: single main.py, argparse, no installable package": no-package
+    "package: installable CLI package, Typer, console command": package
 
 layout:
   type: str
-  help: "Package project layout"
+  help: >-
+    Package layout.
+    Choose flat for a small CLI with one module-level command layer.
+    Choose hexagonal when you want separate CLI, application, domain, and adapter layers.
   default: "flat"
   choices:
-    - flat
-    - hexagonal
+    "flat: simple src package for small CLIs": flat
+    "hexagonal: layered CLI with application/domain/adapters": hexagonal
   when: "{{ mode == 'package' }}"
 
 _answers_file: ".copier-answers.yml"
