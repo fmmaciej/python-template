@@ -52,12 +52,17 @@ def run_generated_check(target: Path, *args: str) -> None:
     subprocess.run(["uv", "run", *args], cwd=target, check=True)
 
 
+def assert_common_files(target: Path) -> None:
+    assert (target / ".python-version").read_text().strip() == "3.12"
+
+
 def test_render_no_package(tmp_path: Path) -> None:
     target = tmp_path / "demo-script"
     render(target, project="demo-script", mode="no-package")
 
     assert (target / "main.py").exists()
     assert (target / "tests" / "test_smoke.py").exists()
+    assert_common_files(target)
     assert not (target / "variants").exists()
     assert not (target / "common").exists()
 
@@ -71,6 +76,7 @@ def test_render_package_flat(tmp_path: Path) -> None:
 
     assert (target / "src" / "demo_flat" / "main.py").exists()
     assert (target / "tests" / "test_smoke.py").exists()
+    assert_common_files(target)
     assert not (target / "variants").exists()
     assert not (target / "common").exists()
 
@@ -100,6 +106,7 @@ def test_render_package_hexagonal(tmp_path: Path) -> None:
     assert (target / "src" / "demo_hex" / "cli" / "commands.py").exists()
     assert (target / "docs" / "architecture.md").exists()
     assert (target / "tests" / "test_smoke.py").exists()
+    assert_common_files(target)
     assert not (target / "variants").exists()
     assert not (target / "common").exists()
 
