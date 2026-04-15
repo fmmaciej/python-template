@@ -22,18 +22,18 @@ help:
         '  just copier copy . ../my-app --trust' \
         '    Runs Copier interactively. It asks for the project name, Python version, and project shape.' \
         '' \
-        'Choose a project shape during generation:' \
-        '  no-package' \
-        '    Choose mode=no-package.' \
-        '    Result: one main.py file, argparse CLI, no installable package.' \
+        '  Choose a project shape during generation:' \
+        '    no-package' \
+        '      Choose mode=no-package.' \
+        '      Result: one main.py file, argparse CLI, no installable package.' \
         '' \
-        '  package + flat' \
-        '    Choose mode=package and layout=flat.' \
-        '    Result: installable CLI package with src/ layout, Typer command, minimal structure.' \
+        '    package + flat' \
+        '      Choose mode=package and layout=flat.' \
+        '      Result: installable CLI package with src/ layout, Typer command, minimal structure.' \
         '' \
-        '  package + hexagonal' \
-        '    Choose mode=package and layout=hexagonal.' \
-        '    Result: installable CLI package with separate CLI, application, domain, and adapter layers.' \
+        '    package + hexagonal' \
+        '      Choose mode=package and layout=hexagonal.' \
+        '      Result: installable CLI package with separate CLI, application, domain, and adapter layers.' \
         '' \
         'Generate a specific shape without prompts:' \
         '  just copier copy . ../my-script --trust --defaults --data project=my-script --data mode=no-package' \
