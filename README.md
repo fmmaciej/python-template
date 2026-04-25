@@ -1,4 +1,4 @@
-# python-template
+# tool-template-py
 
 A Python project template based on Copier.
 
@@ -63,19 +63,19 @@ Example shell variable:
 
 Generate a project from a remote Git repository into a new directory:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust`
+`uv run copier copy https://github.com/fmmaciej/tool-template-py.git "$PROJECT_NAME" --trust`
 
 Generate a flat package project with explicit template data:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=package --data layout=flat`
+`uv run copier copy https://github.com/fmmaciej/tool-template-py.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=package --data layout=flat`
 
 Generate a hexagonal package project:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=package --data layout=hexagonal`
+`uv run copier copy https://github.com/fmmaciej/tool-template-py.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=package --data layout=hexagonal`
 
 Generate a script project:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=no-package`
+`uv run copier copy https://github.com/fmmaciej/tool-template-py.git "$PROJECT_NAME" --trust --defaults --data project="$PROJECT_NAME" --data python=3.12 --data mode=no-package`
 
 Available template parameters:
 
@@ -88,11 +88,11 @@ Available template parameters:
 
 Generate from a specific tagged version:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --vcs-ref v1.0.0`
+`uv run copier copy https://github.com/fmmaciej/tool-template-py.git "$PROJECT_NAME" --trust --vcs-ref v1.0.0`
 
 Generate from the current `HEAD` of the remote repository:
 
-`uv run copier copy https://github.com/fmmaciej/python-template.git "$PROJECT_NAME" --trust --vcs-ref HEAD`
+`uv run copier copy https://github.com/fmmaciej/tool-template-py.git "$PROJECT_NAME" --trust --vcs-ref HEAD`
 
 When using a remote Git repository, Copier renders the selected Git reference rather than a local working tree.
 
@@ -108,9 +108,9 @@ Run `just dev-help` for maintainer commands.
 
 Maintenance notes for this repository are available in:
 
-- [docs/development.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/development.md)
-- [docs/formatting.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/formatting.md)
-- [docs/hex.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/hex.md)
+- [docs/development.md](/Users/fm/Programming/03_Python/02_Projects/tool-template-py/docs/development.md)
+- [docs/formatting.md](/Users/fm/Programming/03_Python/02_Projects/tool-template-py/docs/formatting.md)
+- [docs/hex.md](/Users/fm/Programming/03_Python/02_Projects/tool-template-py/docs/hex.md)
 
 ## Repository Structure
 

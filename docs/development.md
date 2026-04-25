@@ -56,9 +56,9 @@ Smoke testy repo renderują warianty do katalogów tymczasowych i sprawdzają:
 - `uv run pytest` w wygenerowanym projekcie
 - `uv run mypy` w wygenerowanym projekcie
 
-Główna implementacja tych testów jest w [tests/test_template_smoke.py](/Users/fm/Programming/03_Python/02_Projects/python-template/tests/test_template_smoke.py).
+Główna implementacja tych testów jest w [tests/test_template_smoke.py](/Users/fm/Programming/03_Python/02_Projects/tool-template-py/tests/test_template_smoke.py).
 
 ## Dokumenty pomocnicze
 
-- [docs/formatting.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/formatting.md)
-- [docs/hex.md](/Users/fm/Programming/03_Python/02_Projects/python-template/docs/hex.md)
+- [docs/formatting.md](/Users/fm/Programming/03_Python/02_Projects/tool-template-py/docs/formatting.md)
+- [docs/hex.md](/Users/fm/Programming/03_Python/02_Projects/tool-template-py/docs/hex.md)

@@ -20,7 +20,7 @@
       "args": [
         "copy",
         ".",
-        "/tmp/python-template-debug",
+        "/tmp/tool-template-py-debug",
         "--trust",
         "--defaults"
       ],

@@ -1,7 +1,7 @@
 set shell := ["bash", "-cu"]
 
 tmp_dir := "examples"
-tmp_source_dir := "/tmp/python-template-working-copy"
+tmp_source_dir := "/tmp/tool-template-py-working-copy"
 
 script_name := "demo-script"
 flat_name := "demo-flat"
@@ -14,7 +14,7 @@ default:
 
 help:
     @printf '%s\n' \
-        'python-template' \
+        'tool-template-py' \
         '' \
         'This repository is a Copier template. Use it to generate a new Python project; it is not the generated app itself.' \
         '' \
@@ -42,7 +42,7 @@ help:
 
 dev-help:
     @printf '%s\n' \
-        'python-template developer help' \
+        'tool-template-py developer help' \
         '' \
         'Work on this template repository:' \
         '  just sync             # install/update dependencies' \
